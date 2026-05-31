@@ -19,12 +19,12 @@ static void serial_cli_task(void *pvParameters) {
     while(1) {
         input = getchar();
         if (input == EOF || input < 0) {
-            vTaskDelay(10 / portTICK_PERIOD_MS); // Sleep for 10ms
-            continue;                            // Jump back to the top of while(1)
+            vTaskDelay(10 / portTICK_PERIOD_MS); 
+            continue;                            
         }
         putchar(input);
 
-        if(input != '\n' && input != '\r') { // Added '\r' check for different terminals
+        if(input != '\n' && input != '\r') {
             if (idx < sizeof(input_buffer) - 1) {
                 input_buffer[idx] = input;
                 idx++;
@@ -43,9 +43,7 @@ static void serial_cli_task(void *pvParameters) {
         }
 
     }
-    // TODO: get user input
 
-    // TODO: if input == "temp" call get_latest_temperature() and output that
 }
 
 void start_cli(void) {
